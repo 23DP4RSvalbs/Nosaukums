@@ -1,0 +1,2 @@
+# Nosaukums
+Strukturētā objektorientētā programma
