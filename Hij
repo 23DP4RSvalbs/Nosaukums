@@ -1,0 +1,99 @@
+public class TV {
+    private int channelNumber;
+    private String name;
+    private double price;
+
+    public TV(int channelNumber, String name, double price) {
+        this.channelNumber = channelNumber;
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void displayInfo() {
+        System.out.println("Channel " + channelNumber + ": " + name + " - $" + price);
+    }
+}
+
+
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<TV> channels = new ArrayList<>();
+
+        while (true) {
+            System.out.println("\n1. Add Channel");
+            System.out.println("2. Show All Channels");
+            System.out.println("3. Show Most Expensive Channel");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> addChannel(scanner, channels);
+                case 2 -> showAllChannels(channels);
+                case 3 -> showMostExpensive(channels);
+                case 4 -> {
+                    System.out.println("Goodbye!");
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+
+    private static void addChannel(Scanner scanner, ArrayList<TV> channels) {
+        System.out.print("Enter Channel Number: ");
+        int number = scanner.nextInt();
+        scanner.nextLine(); 
+
+        System.out.print("Enter Channel Name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter Price: ");
+        double price = scanner.nextDouble();
+
+        channels.add(new TV(number, name, price));
+        System.out.println("Channel added!");
+    }
+
+    private static void showAllChannels(ArrayList<TV> channels) {
+        if (channels.isEmpty()) {
+            System.out.println("No channels to show.");
+            return;
+        }
+        
+        System.out.println("\nChannel List:");
+        for (TV channel : channels) {
+            channel.displayInfo();
+        }
+    }
+
+    private static void showMostExpensive(ArrayList<TV> channels) {
+        if (channels.isEmpty()) {
+            System.out.println("No channels available.");
+            return;
+        }
+
+        TV mostExpensive = channels.get(0);
+        for (TV channel : channels) {
+            if (channel.getPrice() > mostExpensive.getPrice()) {
+                mostExpensive = channel;
+            }
+        }
+
+        System.out.println("\nMost Expensive Channel:");
+        mostExpensive.displayInfo();
+    }
+}
