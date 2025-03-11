@@ -1,0 +1,36 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class ShoppingCart {
+    // Map where the key is the product name and the value is the Item
+    private Map<String, Item> items;
+    
+    public ShoppingCart() {
+        this.items = new HashMap<>();
+    }
+    
+    // Adds a product to the cart. If already added, increases the quantity.
+    public void add(String product, int price) {
+        if (items.containsKey(product)) {
+            items.get(product).increaseQuantity();
+        } else {
+            items.put(product, new Item(product, 1, price));
+        }
+    }
+    
+    // Returns the total price of all items in the cart.
+    public int price() {
+        int total = 0;
+        for (Item item : items.values()) {
+            total += item.price();
+        }
+        return total;
+    }
+    
+    // Prints each Item in the cart on a separate line.
+    public void print() {
+        for (Item item : items.values()) {
+            System.out.println(item);
+        }
+    }
+}

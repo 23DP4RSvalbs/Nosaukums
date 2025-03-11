@@ -1,0 +1,27 @@
+public class Item {
+    private String product;
+    private int quantity;
+    private int unitPrice;
+    
+    public Item(String product, int quantity, int unitPrice) {
+        this.product = product;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+    
+    // Returns the total price for this item (unit price * quantity)
+    public int price() {
+        return unitPrice * quantity;
+    }
+    
+    // Increases the quantity by one
+    public void increaseQuantity() {
+        quantity++;
+    }
+    
+    // Returns the string representation in the format "product: quantity"
+    @Override
+    public String toString() {
+        return product + ": " + quantity;
+    }
+}
