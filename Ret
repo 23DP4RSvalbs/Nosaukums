@@ -1,0 +1,75 @@
+public class Televizors {
+    int channelNumber;  // The channel number
+    String name;        // The name of the channel
+    double price;       // The price of the channel
+
+    // Constructor to create a new Televizors object
+    public Televizors(int channelNumber, String name, double price) {
+        this.channelNumber = channelNumber;
+        this.name = name;
+        this.price = price;
+    }
+
+    // Method to display the channel's information
+    public void showInfo() {
+        System.out.println("Channel " + channelNumber + ": " + name + " - $" + price);
+    }
+}
+
+
+
+
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Televizors> channels = new ArrayList<>();
+
+        while (true) {
+            // Display a simple menu
+            System.out.println("\n1. Add Channel  2. Show All  3. Show Most Expensive  4. Exit");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                // Option 1: Read and add a new channel (enter number, name, price)
+                System.out.print("Enter Channel Number: ");
+                int num = scanner.nextInt();
+                System.out.print("Enter Channel Name: ");
+                String name = scanner.next();
+                System.out.print("Enter Price: ");
+                double price = scanner.nextDouble();
+                channels.add(new Televizors(num, name, price));
+                System.out.println("Channel added!");
+            } else if (choice == 2) {
+                // Option 2: Print all channels using an index-based loop
+                for (int i = 0; i < channels.size(); i++) {
+                    Televizors tv = channels.get(i);
+                    tv.showInfo();
+                }
+            } else if (choice == 3) {
+                // Option 3: Find and print the most expensive channel using an index-based loop
+                Televizors expensive = channels.get(0);
+                for (int i = 0; i < channels.size(); i++) {
+                    Televizors tv = channels.get(i);
+                    if (tv.price > expensive.price) {
+                        expensive = tv;
+                    }
+                }
+                System.out.println("Most Expensive Channel:");
+                expensive.showInfo();
+            } else if (choice == 4) {
+                // Option 4: Exit the program
+                break;
+            }
+        }
+        scanner.close();
+    }
+}
+
