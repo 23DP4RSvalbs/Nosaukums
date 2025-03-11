@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class BoxWithMaxWeight extends Box {
+    private int capacity; // maximum allowed weight
+    private ArrayList<Item> items;
+    
+    public BoxWithMaxWeight(int capacity) {
+        this.capacity = capacity;
+        this.items = new ArrayList<>();
+    }
+    
+    @Override
+    public void add(Item item) {
+        int totalWeight = 0;
+        for (Item i : items) {
+            totalWeight += i.getWeight();
+        }
+        // Only add if the new item won't exceed the capacity.
+        if (totalWeight + item.getWeight() <= capacity) {
+            items.add(item);
+        }
+    }
+    
+    @Override
+    public boolean isInBox(Item item) {
+        return items.contains(item);
+    }
+}
+
+
+BoxWithMaxWeight coffeeBox = new BoxWithMaxWeight(10);
+coffeeBox.add(new Item("Saludo", 5));
+coffeeBox.add(new Item("Pirkka", 5));
+coffeeBox.add(new Item("Kopi Luwak", 5));
+
+System.out.println(coffeeBox.isInBox(new Item("Saludo")));    // true
+System.out.println(coffeeBox.isInBox(new Item("Pirkka")));      // true
+System.out.println(coffeeBox.isInBox(new Item("Kopi Luwak")));  // false
