@@ -1,0 +1,23 @@
+public class Dog extends Animal implements NoiseCapable {
+    
+    // Non-parameterized constructor, gives the dog the name "Dog"
+    public Dog() {
+        super("Dog");
+    }
+    
+    // Parameterized constructor for naming the dog
+    public Dog(String name) {
+        super(name);
+    }
+    
+    // Bark method prints "<name> barks"
+    public void bark() {
+        System.out.println(getName() + " barks");
+    }
+    
+    // Implements makeNoise from NoiseCapable by calling bark()
+    @Override
+    public void makeNoise() {
+        bark();
+    }
+}

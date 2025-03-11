@@ -1,0 +1,22 @@
+public abstract class Animal {
+    private String name;
+    
+    public Animal(String name) {
+        this.name = name;
+    }
+    
+    // Prints "<name> eats"
+    public void eat() {
+        System.out.println(name + " eats");
+    }
+    
+    // Prints "<name> sleeps"
+    public void sleep() {
+        System.out.println(name + " sleeps");
+    }
+    
+    // Returns the name of the animal
+    public String getName() {
+        return name;
+    }
+}

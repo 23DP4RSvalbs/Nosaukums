@@ -1,0 +1,23 @@
+public class Cat extends Animal implements NoiseCapable {
+    
+    // Non-parameterized constructor, gives the cat the name "Cat"
+    public Cat() {
+        super("Cat");
+    }
+    
+    // Parameterized constructor for naming the cat
+    public Cat(String name) {
+        super(name);
+    }
+    
+    // Purr method prints "<name> purrs"
+    public void purr() {
+        System.out.println(getName() + " purrs");
+    }
+    
+    // Implements makeNoise from NoiseCapable by calling purr()
+    @Override
+    public void makeNoise() {
+        purr();
+    }
+}
